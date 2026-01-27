@@ -1,0 +1,19 @@
+<h2>Danh sách sản phẩm</h2>
+<a href="/add">➕ Thêm</a>
+<table border="1">
+    <tr>
+        <th>Ảnh</th><th>Tên</th><th>Giá</th><th>Số lượng</th><th>Hành động</th>
+    </tr>
+    <% products.forEach(p => { %>
+        <tr>
+            <td><img src="<%= p.url_image %>" width="80"/></td>
+            <td><%= p.name %></td>
+            <td><%= p.price %></td>
+            <td><%= p.quantity %></td>
+            <td>
+                <a href="/edit/<%= p.id %>">✏️</a>
+                <a href="/delete/<%= p.id %>">🗑️</a>
+            </td>
+        </tr>
+    <% }) %>
+</table>
