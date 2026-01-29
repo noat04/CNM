@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import productRoutes from "./routes/product.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
 import homeRoutes from "./routes/home.routes.js";
+import logRoutes from "./routes/log.routes.js";
 import session from "express-session";
 import authRoutes from "./routes/auth.routes.js";
 import { requireLogin, requireAdmin } from "./middlewares/auth.middleware.js";
@@ -40,9 +41,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/auth", authRoutes);
 
 // 2. Các route con cụ thể (Có bảo vệ)
-app.use("/products", requireLogin, requireAdmin, productRoutes);
+app.use("/products", requireLogin, productRoutes);
 app.use("/categories", requireLogin, requireAdmin, categoryRoutes);
-
+app.use("/logs", requireLogin, requireAdmin, logRoutes);
 // 3. Route trang chủ (Gốc) phải nằm CUỐI CÙNG
 // Vì "/" là prefix của mọi đường dẫn, nếu để lên đầu nó sẽ "ăn" hết các request
 app.use("/", requireLogin, homeRoutes);
